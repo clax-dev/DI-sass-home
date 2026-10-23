@@ -1,27 +1,64 @@
-#container {
-  text-align: center;
+// =====================================================================
+// home.page.scss — Estilos de la página Home escritos con Sass (SCSS)
+// Angular compila este archivo a CSS al hacer `ionic serve` / `ionic build`.
+// =====================================================================
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+// ---------------------------------------------------------------------
+// 1. VARIABLES: valores reutilizables. Si cambia el color corporativo,
+//    se cambia aquí una sola vez.
+// ---------------------------------------------------------------------
+$color-titulo: #d32f2f;        // rojo
+$color-boton: #1565c0;         // azul
+$color-boton-hover: #0d47a1;   // azul más oscuro para el hover
+$color-borde: #2e7d32;         // verde
+$grosor-borde: 3px;
+$espacio: 16px;
+
+// ---------------------------------------------------------------------
+// 2. MIXIN: bloque de CSS reutilizable con parámetro.
+//    Centra horizontalmente un elemento con flexbox.
+// ---------------------------------------------------------------------
+@mixin alinear($posicion: center) {
+  display: flex;
+  justify-content: $posicion;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
+// ---------------------------------------------------------------------
+// 3. ANIDAMIENTO + selector padre (&) con nomenclatura BEM:
+//    &__titulo se compila como .home__titulo
+// ---------------------------------------------------------------------
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: $espacio;
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+  // Título en rojo, mayúsculas y centrado
+  &__titulo {
+    color: $color-titulo;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0;
+  }
 
-  color: #8c8c8c;
+  // Contenedor del botón: lo empuja a la derecha
+  &__acciones {
+    @include alinear(flex-end);
+  }
 
-  margin: 0;
-}
+  // Botón azul. ion-button pinta su fondo dentro de su Shadow DOM,
+  // por eso no basta con `background`: se usan sus variables CSS (--background)
+  &__boton {
+    --background: #{$color-boton};
+    --background-hover: #{$color-boton-hover};
+    --background-activated: #{$color-boton-hover};
+    --color: #ffffff;
+  }
 
-#container a {
-  text-decoration: none;
+  // Imagen centrada con borde verde de 3px
+  &__imagen {
+    display: block;
+    margin: 0 auto;              // centrado horizontal de un elemento de bloque
+    max-width: 80%;              // ancho limitado para que se aprecie el centrado
+    border: $grosor-borde solid $color-borde;
+  }
 }
