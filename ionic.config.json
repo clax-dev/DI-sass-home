@@ -1,0 +1,7 @@
+{
+  "name": "sass-home",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
