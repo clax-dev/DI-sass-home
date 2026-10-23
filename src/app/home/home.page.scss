@@ -59,6 +59,7 @@ $espacio: 16px;
     display: block;
     margin: 0 auto;              // centrado horizontal de un elemento de bloque
     max-width: 80%;              // ancho limitado para que se aprecie el centrado
+    max-height: 60vh;            // alto máximo: 60 % de la pantalla (la imagen es vertical)
     border: $grosor-borde solid $color-borde;
   }
 }
